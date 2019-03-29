@@ -22,8 +22,16 @@ export default class ReactPdfJs extends Component {
   };
 
   componentDidMount() {
-    console.log('HELLO')
     PdfJsLib.GlobalWorkerOptions.workerSrc = '//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.worker.js';
+    console.log('PDF', PdfJsLib)
+    // (Optionally) enable hyperlinks within PDF files.
+    var pdfLinkService = new pdfjsViewer.PDFLinkService();
+    console.log('service', pdfLinkService)
+    var pdfFindController = new pdfjsViewer.PDFFindController({
+      linkService: pdfLinkService,
+    });
+    console.log('controller', pdfFindController)
+
     PdfJsLib.getDocument(this.props.file).then((pdf) => {
       this.setState({ pdf });
       if (this.props.onDocumentComplete) {
