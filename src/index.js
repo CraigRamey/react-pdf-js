@@ -22,6 +22,7 @@ export default class ReactPdfJs extends Component {
   };
 
   componentDidMount() {
+    console.log('HELLO')
     PdfJsLib.GlobalWorkerOptions.workerSrc = '//cdnjs.cloudflare.com/ajax/libs/pdf.js/2.0.550/pdf.worker.js';
     PdfJsLib.getDocument(this.props.file).then((pdf) => {
       this.setState({ pdf });
